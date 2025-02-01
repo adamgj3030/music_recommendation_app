@@ -14,11 +14,13 @@ Non-Functional Requirements:
 - Scalability & Maintainability: Code that’s modular and well-documented.
 
 Frontend:
-- Framework: React
+- Language/Framework: TypeScript/React
 - Styling: Material UI
+- Build Tool: Vite
 
 Backend:
 - Language/Framework: TypeScript/Node.js + Express.js
-
-Database:
-- PostgreSQL
+- Environment Management: Dotenv
+- Development Tools: Nodemon, ts-node
+- Database: PostgreSQL
+- Authentication: Spotify OAuth
