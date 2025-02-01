@@ -12,3 +12,13 @@ Non-Functional Requirements:
 - Security: Securely handle OAuth tokens and user data.
 - Performance: Fast API responses, efficient data retrieval, and minimal load times.
 - Scalability & Maintainability: Code that’s modular and well-documented.
+
+Frontend:
+- Framework: React
+- Styling: Material UI
+
+Backend:
+- Language/Framework: TypeScript/Node.js + Express.js
+
+Database:
+- PostgreSQL
