@@ -1,9 +1,8 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction, RequestHandler } from 'express';
 import { fetchTopTracks, fetchTopArtists } from '../services/spotifyService';
 
-export const getTopTracks = async (req: Request, res: Response) => {
+export const getTopTracks: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   console.log('Cookies on incoming request:', req.cookies);
-
   const token = req.cookies?.access_token;
   console.log('Extracted access token:', token);
 
@@ -12,9 +11,11 @@ export const getTopTracks = async (req: Request, res: Response) => {
     res.status(401).json({ error: 'No access token provided.' });
     return;
   }
+  
+  const timeRange = (req.query.time_range as string) || 'medium_term';
 
   try {
-    const data = await fetchTopTracks(`Bearer ${token}`);
+    const data = await fetchTopTracks(`Bearer ${token}`, timeRange);
     console.log('Fetched top tracks data from Spotify:', data);
     res.json(data);
   } catch (error) {
@@ -23,9 +24,8 @@ export const getTopTracks = async (req: Request, res: Response) => {
   }
 };
 
-export const getTopArtists = async (req: Request, res: Response) => {
+export const getTopArtists: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   console.log('Cookies on incoming request:', req.cookies);
-
   const token = req.cookies?.access_token;
   console.log('Extracted access token:', token);
 
@@ -35,8 +35,10 @@ export const getTopArtists = async (req: Request, res: Response) => {
     return;
   }
 
+  const timeRange = (req.query.time_range as string) || 'medium_term';
+
   try {
-    const data = await fetchTopArtists(`Bearer ${token}`);
+    const data = await fetchTopArtists(`Bearer ${token}`, timeRange);
     console.log('Fetched top artists data from Spotify:', data);
     res.json(data);
   } catch (error) {
