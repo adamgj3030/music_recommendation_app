@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { exchangeToken, getUserData } from '../services/spotifyService';
 
 export const spotifyAuth = (req: Request, res: Response) => {
-  const scope = 'user-read-private user-read-email';
+  const scope = 'user-read-private user-read-email user-top-read';
   const params = new URLSearchParams({
     client_id: process.env.SPOTIFY_CLIENT_ID!,
     response_type: 'code',

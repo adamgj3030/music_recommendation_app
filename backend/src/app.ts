@@ -2,7 +2,8 @@ import express from 'express';
 import { config } from './config';
 import morgan from 'morgan';
 import cors from 'cors';
-import helmet from 'helmet'; //  <-- NEW
+import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes';
 import spotifyRoutes from './routes/spotifyRoutes';
 import { errorHandler } from './middleware/errorHandler';
@@ -12,6 +13,7 @@ import { Request, Response, NextFunction } from 'express';
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 // Add Helmet to set security headers
 app.use(helmet());
@@ -19,9 +21,10 @@ app.use(helmet());
 // Use CORS. Adjust origin in production.
 app.use(
   cors({
-    origin: process.env.NODE_ENV === 'production'
-      ? 'https://your-frontend-domain.com'
-      : 'http://localhost:5173',
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? 'https://your-frontend-domain.com'
+        : 'http://localhost:5173',
     credentials: true,
   })
 );
