@@ -53,3 +53,12 @@ export async function fetchTopArtists(authHeader: string, timeRange = 'medium_te
   });
   return response.json();
 }
+
+// NEW: Fetch an artist's top track for a given country (default 'US')
+export async function fetchArtistTopTrack(authHeader: string, artistId: string, country = 'US') {
+  const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=${country}`;
+  const response = await fetch(url, {
+    headers: { 'Authorization': authHeader },
+  });
+  return response.json();
+}

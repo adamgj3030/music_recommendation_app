@@ -16,6 +16,7 @@ module.exports = {
     rules: {
       // Add custom rules or override defaults here:
       '@typescript-eslint/no-explicit-any': 'warn',
-      'no-console': 'off'
+      'no-console': 'off',
+      'constructor-super': 'off'
     }
   };
